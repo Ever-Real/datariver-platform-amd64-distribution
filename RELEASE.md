@@ -17,3 +17,18 @@ Each split file is 500 MB except the final file of a bundle. The associated
 `*.parts.sha256` file verifies every part. The original tar and image manifest
 checksums are retained alongside the parts. Every image entry in both manifest
 files is `linux/amd64`.
+
+## Additional macOS arm64 source-host Python cache
+
+- Artifact: `datariver-uv-cache-darwin-arm64-a66012e1308b.tar.gz`
+- Artifact SHA-256: `827d68bd36e5c3679a49e2e63e5a8ea261e5184bad92e5ca91eb12af75a4331f`
+- Source repository: `https://github.com/JayJin/datariver_v1.git`
+- Source revision: `313e59ae42baa247fc9806df623227e8ff8f2917`
+- Lockfile SHA-256: `a66012e1308be317e49c1768aaabc0d99c3b5a33e741cba2e5d7999d12e87cad`
+- Target: macOS arm64, Python 3.12 and uv 0.9.17 only
+
+The artifact contains the uv package cache required by the matching frozen
+source-host dependency installation, including `pypdf==6.13.3` and
+`python-multipart==0.0.31`. Its sidecar `.sha256` and `.manifest.tsv` files are
+part of the release record. It is independent from the Linux AMD64 Docker image
+bundles above.

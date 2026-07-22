@@ -1,0 +1,6 @@
+field	value
+artifact	datariver-uv-cache-darwin-arm64-a66012e1308b.tar.gz
+lock_sha256	a66012e1308be317e49c1768aaabc0d99c3b5a33e741cba2e5d7999d12e87cad
+platform	darwin/arm64
+uv_version	uv 0.9.17 (2b5d65e61 2025-12-09)
+python	Python 3.12.12

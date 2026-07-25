@@ -1,0 +1,7 @@
+record	name	value
+release	source_commit	3c0379f4051ec698a53db41c5b5092895e40b8fb
+image	reference	redis:8.2.6-bookworm
+image	source_digest	sha256:3055dc25265b0c19ec90a1756dad4e0faff6f79e2557a6ac3d1274e39ee906f6
+image	platform	linux/amd64
+image	loaded_image_id	sha256:ed95b546aa16d6a0b24ec53c7258456f26b5d18639799126dee0cfec15133a23
+archive	config_digest	sha256:3e9ef9216fc582ba48e22aa5e4b6340cb3b7787d3637c15e623a39d531fa5b92

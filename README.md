@@ -1,7 +1,7 @@
 # DataRiver AMD64 offline platform release
 
-This repository intentionally contains one Git commit and one current, closed-network
-`linux/amd64` platform release. Large artifacts are stored in Git LFS.
+This repository intentionally publishes one current, closed-network `linux/amd64` platform
+release. Large artifacts are stored in Git LFS.
 
 ## Release
 
@@ -17,7 +17,11 @@ The Core archive contains the images required to run the DataRiver platform itse
 Redis 8.2.6 is provided as a separate AMD64 image because the platform runs its cache and delivery
 services through `compose.local-connectors.yaml`.
 
-This release deliberately excludes external or optional services: MinIO, DataHub, Airflow, Neo4j,
+Neo4j 2026.06.0 is provided as a separately checksummed optional AMD64 image for a preparation host
+that enables graph projection. The manifest records the exact upstream digest, image ID and
+platform used to produce the archive.
+
+This release deliberately excludes other external or optional services: MinIO, DataHub, Airflow,
 APISIX and observability services. They must be supplied by the selected target environment.
 No environment file, secret, volume, database dump or application data is included.
 
@@ -51,3 +55,15 @@ docker image inspect --platform linux/amd64 redis:8.2.6-bookworm \
 ```
 
 The image inspection must report `linux/amd64`.
+
+Load Neo4j separately only when graph projection is enabled:
+
+```bash
+sha256sum -c neo4j-2026.06.0-linux-amd64.tar.gz.sha256
+gzip -dc neo4j-2026.06.0-linux-amd64.tar.gz | docker image load
+docker image inspect --platform linux/amd64 neo4j:2026.06.0 \
+  --format '{{.Os}}/{{.Architecture}} {{.Id}}'
+```
+
+The image inspection must report `linux/amd64` and image ID
+`sha256:5cf053cb7808bc822c0ca0529252577ecd964f2e67c3083413d51c15dfafc609`.

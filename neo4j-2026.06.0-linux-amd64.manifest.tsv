@@ -1,0 +1,2 @@
+archive	image	source_image	platform	image_id	repo_digest	archive_sha256
+neo4j-2026.06.0-linux-amd64.tar.gz	neo4j:2026.06.0	neo4j:2026.06.0@sha256:ba2b859bdbe7017a9baa1a7b5681ac9732198753719b0a502e3645feddfdec72	linux/amd64	sha256:5cf053cb7808bc822c0ca0529252577ecd964f2e67c3083413d51c15dfafc609	neo4j@sha256:ba2b859bdbe7017a9baa1a7b5681ac9732198753719b0a502e3645feddfdec72	859016424a102d3ea34857bd01fc2a450f0ae0ec7e358e85fb8be9b8ecd4573a

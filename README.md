@@ -21,6 +21,10 @@ Neo4j 2026.06.0 is provided as a separately checksummed optional AMD64 image for
 that enables graph projection. The manifest records the exact upstream digest, image ID and
 platform used to produce the archive.
 
+The `datariver-uv-cache-linux-x86_64-*` archive contains the exact frozen Python dependency cache
+for Linux AMD64, Python 3.12.12 and uv 0.9.17. It includes `pypdf==6.13.3` and was accepted only
+after a clean `uv sync --frozen --all-extras --offline` verification in a Linux AMD64 container.
+
 This release deliberately excludes other external or optional services: MinIO, DataHub, Airflow,
 APISIX and observability services. They must be supplied by the selected target environment.
 No environment file, secret, volume, database dump or application data is included.
@@ -67,3 +71,23 @@ docker image inspect --platform linux/amd64 neo4j:2026.06.0 \
 
 The image inspection must report `linux/amd64` and image ID
 `sha256:5cf053cb7808bc822c0ca0529252577ecd964f2e67c3083413d51c15dfafc609`.
+
+Install the source-host Python dependencies without reaching PyPI:
+
+```bash
+sha256sum -c datariver-uv-cache-linux-x86_64-a66012e1308b.tar.gz.sha256
+test "$(sha256sum ../datariver_v1/uv.lock | awk '{print $1}')" = \
+  "$(awk -F '\t' '$1 == "lock_sha256" {print $2}' \
+    datariver-uv-cache-linux-x86_64-a66012e1308b.manifest.tsv)"
+
+cache_parent=${XDG_CACHE_HOME:-"$HOME/.cache"}
+mkdir -p "$cache_parent"
+tar -xzf datariver-uv-cache-linux-x86_64-a66012e1308b.tar.gz -C "$cache_parent"
+
+cd ../datariver_v1
+UV_CACHE_DIR="$cache_parent/uv" uv sync --frozen --all-extras --offline
+```
+
+Use this archive only when `uname -m` reports `x86_64`, `python3.12 --version` reports Python
+3.12.12 and `uv --version` reports 0.9.17. A changed `uv.lock` must use a newly generated and
+verified cache archive.

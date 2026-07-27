@@ -1,3 +1,4 @@
 datariver-platform-amd64-*.tar.gz.part-* filter=lfs diff=lfs merge=lfs -text
 redis-*-linux-amd64-*.tar.gz filter=lfs diff=lfs merge=lfs -text
 neo4j-*-linux-amd64*.tar.gz filter=lfs diff=lfs merge=lfs -text
+datariver-uv-cache-linux-x86_64-*.tar.gz filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,2 @@
+archive	image	source_image	platform	image_id	repo_digest	archive_sha256
+pgvector-0.8.2-pg17-bookworm-linux-amd64.tar.gz	pgvector/pgvector:0.8.2-pg17-bookworm	pgvector/pgvector:0.8.2-pg17-bookworm@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966	linux/amd64	sha256:e04af45eb526378554a24ed05b37d9ea56fd623feca9adf264d4f47d875c9a93	pgvector/pgvector@sha256:feb68f4f15446397d8cac7f4fe48fe4586de83160d1fc48b46283312d1a33966	9623101faf11b9454d72e395a2fb08411d87ca45a1cb78851eb2aad9b8da31cb

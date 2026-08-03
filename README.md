@@ -21,6 +21,11 @@ Neo4j 2026.06.0 is provided as a separately checksummed optional AMD64 image for
 that enables graph projection. The manifest records the exact upstream digest, image ID and
 platform used to produce the archive.
 
+pgvector 0.8.2 on PostgreSQL 17 is provided as a separately checksummed AMD64 image for the
+preparation-PC source-host workflow. It is a third-party target prerequisite, not a DataRiver
+application image. The archive has the exact tag expected by the source-host workflow:
+`pgvector/pgvector:0.8.2-pg17-bookworm`.
+
 The `datariver-uv-cache-linux-x86_64-*` archive contains the exact frozen Python dependency cache
 for Linux AMD64, Python 3.12.12 and uv 0.9.17. It includes `pypdf==6.13.3` and was accepted only
 after a clean `uv sync --frozen --all-extras --offline` verification in a Linux AMD64 container.
@@ -71,6 +76,26 @@ docker image inspect --platform linux/amd64 neo4j:2026.06.0 \
 
 The image inspection must report `linux/amd64` and image ID
 `sha256:5cf053cb7808bc822c0ca0529252577ecd964f2e67c3083413d51c15dfafc609`.
+
+### Direct browser download: pgvector (no Git LFS client)
+
+On the GitHub Files page, download
+`pgvector-0.8.2-pg17-bookworm-linux-amd64.tar.gz` and its `.sha256` sidecar directly (use the
+file's **Download** control for the Git LFS object). A Git LFS client is not required on the
+preparation PC.
+
+Verify and load the downloaded files:
+
+```bash
+sha256sum -c pgvector-0.8.2-pg17-bookworm-linux-amd64.tar.gz.sha256
+gzip -dc pgvector-0.8.2-pg17-bookworm-linux-amd64.tar.gz | docker image load
+docker image inspect --platform linux/amd64 \
+  pgvector/pgvector:0.8.2-pg17-bookworm \
+  --format '{{.Os}}/{{.Architecture}} {{.Id}}'
+```
+
+The image inspection must report `linux/amd64`. With that tag present, no
+`SOURCE_HOST_POSTGRES_IMAGE` override is needed.
 
 Install the source-host Python dependencies without reaching PyPI:
 

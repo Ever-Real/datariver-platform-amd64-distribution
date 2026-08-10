@@ -1,0 +1,5 @@
+field	value
+artifact	datariver-uv-cache-linux-x86_64-6609c3538411.tar.gz
+lock_sha256	6609c353841119633b2b02ca68cc36bcaf9a9930878017277519732fd9748460
+platform	linux/amd64
+uv_version	uv 0.9.17
